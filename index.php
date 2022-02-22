@@ -19,6 +19,9 @@ function searchNBA(str) {
   }
 }
 </script>
+<!-- not sure how to load this within the php that is returned and have it trigger lazy loading -->
+<script src="./js/lazysizes.min.js" async="">
+</script>
 </head>
 <body>
 

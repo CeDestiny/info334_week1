@@ -2,9 +2,6 @@
 <html>
 <head>
   <link rel="stylesheet" href="./styles/nba.css" type="text/css" />
-  <script src="./js/lazysizes.min.js" async="">
-	//document.addEventListener("DOMContentLoaded", yall);
-  </script>
 <?php
 function getSearchResults() {
 	$search = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_EMAIL);
