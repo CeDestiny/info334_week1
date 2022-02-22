@@ -1,0 +1,27 @@
+.nba_container {
+	width: 400px;
+	height: 150px;
+	background: #ffffff;
+	display: flex;
+}
+.nba_headshot_container {
+	flex: 0 0 200px;
+	display: flex;
+	justify-content: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	/*background-image: url('/images/nba_placeholder.png');*/
+}
+
+.nba_headshot_img {
+	width:100%;
+	height:100%;
+	object-fit: contain;
+}
+
+.nba_player_stats {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}

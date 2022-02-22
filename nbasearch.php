@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="/styles/nba.css" type="text/css" />
-  <script src="/js/lazysizes.min.js" async="">
+  <link rel="stylesheet" href="./styles/nba.css" type="text/css" />
+  <script src="./js/lazysizes.min.js" async="">
 	//document.addEventListener("DOMContentLoaded", yall);
   </script>
 <?php
@@ -31,7 +31,7 @@ function getSearchResults() {
 		foreach ($result as $row) {
 			echo "<div class='nba_container'>\n";
 				echo "<div class='nba_headshot_container'>\n";
-					echo "<img class='lazyload' src='/images/nba_placeholder.png' data-src='".$nbaHeadshotPrefix.$row["nbaid"].$nbaHeadshotPostfix."' onerror='this.src=\"/images/nba_placeholder.png\"'>\n";
+					echo "<img class='lazyload' src='/images/nba_placeholder.png' data-src='".$nbaHeadshotPrefix.$row["nbaid"].$nbaHeadshotPostfix."' onerror='this.src=\"./images/nba_placeholder.png\"'>\n";
 					// onerror='this.parentNode.removeChild(this)' onload='this.parentNode.backgroundImage=none'
 				echo "</div>\n";
 				echo "<div class='nba_player_stats'>\n";
