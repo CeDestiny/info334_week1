@@ -17,7 +17,7 @@ function getSearchResults() {
 		$nbaHeadshotPostfix = ".png";
 
 		include 'dbsetup.php';
-		$query = "SELECT levenshtein_ratio(name, ?) as score, name, team, points, ppg, nbaid from stats order by 1 desc limit 20";
+		$query = "SELECT levenshtein_ratio(name, ?) as score, name, team, points, ppg, fg_pct, 3_pct, ft_pct, nbaid from stats order by 1 desc limit 20";
 		echo $query."<br/>";
 		$stmt = $conn->prepare($query);
 		$stmt->bind_param('s', $search);
@@ -28,14 +28,32 @@ function getSearchResults() {
 		foreach ($result as $row) {
 			echo "<div class='nba_container'>\n";
 				echo "<div class='nba_headshot_container'>\n";
-					echo "<img class='lazyload' src='/images/nba_placeholder.png' data-src='".$nbaHeadshotPrefix.$row["nbaid"].$nbaHeadshotPostfix."' onerror='this.src=\"./images/nba_placeholder.png\"'>\n";
+					echo "<img class='lazyload' src='./images/nba_placeholder.png' data-src='".$nbaHeadshotPrefix.$row["nbaid"].$nbaHeadshotPostfix."' onerror='this.src=\"./images/nba_placeholder.png\"'>\n";
 					// onerror='this.parentNode.removeChild(this)' onload='this.parentNode.backgroundImage=none'
 				echo "</div>\n";
-				echo "<div class='nba_player_stats'>\n";
-					echo "<h2>".$row['name']."</h2>\n";
-					echo "<div class='nba_vert_stats'><b>Team: </b>".$row['team']."</div>\n";
-					echo "<div class='nba_vert_stats'><b>Points: </b>".$row['points']."</div>\n";
-					echo "<div class='nba_vert_stats'><b>PPG: </b>".$row['ppg']."</div>\n";
+				echo "<div class='flex_col'>\n";
+					echo "<h2 flex='1 1 auto'>".$row['name']."</h2>\n";
+					echo "<div class='flex_row'>\n";
+						echo "<div class='nba_player_main_stats'>\n";
+							echo "<div><b>Team: </b>".$row['team']."</div>\n";
+							echo "<div><b>Points: </b>".$row['points']."</div>\n";
+							echo "<div><b>PPG: </b>".$row['ppg']."</div>\n";
+						echo "</div>\n";
+						echo "<div class='nba_player_stats'>\n";
+							echo "<div class='nba_vert_stats'>\n";
+								echo "<div class='nba_vert_stats_header'>FG %</div>\n";
+								echo "<div class='nba_vert_stats_content'>".$row['fg_pct']."</div>\n";
+							echo "</div>\n";
+							echo "<div class='nba_vert_stats'>\n";
+								echo "<div class='nba_vert_stats_header'>3pt %</div>\n";
+								echo "<div class='nba_vert_stats_content'>".$row['3_pct']."</div>\n";
+							echo "</div>\n";
+							echo "<div class='nba_vert_stats'>\n";
+								echo "<div class='nba_vert_stats_header'>FT %</div>\n";
+								echo "<div class='nba_vert_stats_content'>".$row['ft_pct']."</div>\n";
+							echo "</div>\n";
+						echo "</div>\n";
+					echo "</div>\n";
 				echo "</div>\n";
 			echo "</div>\n";
 		}
